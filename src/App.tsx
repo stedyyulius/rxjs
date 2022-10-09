@@ -73,18 +73,10 @@ function TodoListFilters() {
     onSelectFilter(target.value);
   };
 
-  console.log(
-    <select value={filter} onChange={updateFilter}>
-      <option value={FilterType.All}>All</option>
-      <option value={FilterType.Done}>Completed</option>
-      <option value={FilterType.Pending}>Uncompleted</option>
-    </select>
-  );
-
   return (
     <>
       Filter:
-      <select value={filter} onChange={updateFilter}>
+      <select className="border-solid border-2" value={filter} onChange={updateFilter}>
         <option value={FilterType.All}>All</option>
         <option value={FilterType.Done}>Completed</option>
         <option value={FilterType.Pending}>Uncompleted</option>
@@ -122,8 +114,8 @@ function TodoListStats() {
   } = useTodosStats();
 
   return (
-    <ul>
-      <li>Total items: {nTotal}</li>
+    <ul className="border-solid border-2 p-6">
+      <li className="text-3xl font-bold underline">Total items: {nTotal}</li>
       <li>Items completed: {nCompleted}</li>
       <li>Items not completed: {nUncompleted}</li>
       <li>Percent completed: {percentCompleted}</li>
@@ -144,8 +136,8 @@ function TodoItemCreator() {
   };
 
   return (
-    <div>
-      <input type="text" value={inputValue} onChange={onChange} />
+    <div className="mt-[80px]">
+      <input className="border-solid border-2" type="text" value={inputValue} onChange={onChange} />
       <button onClick={addItem}>Add</button>
     </div>
   );
@@ -190,7 +182,7 @@ function TodoList() {
   const todoList = useTodos();
 
   return (
-    <>
+    <div className="flex flex-col justify-center items-center">
       <TodoListStats />
       <TodoListFilters />
       <TodoItemCreator />
@@ -198,7 +190,7 @@ function TodoList() {
       {todoList.map((id) => (
         <TodoItem key={id} id={id} />
       ))}
-    </>
+    </div>
   );
 }
 export default function App() {
